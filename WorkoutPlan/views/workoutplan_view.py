@@ -15,6 +15,9 @@ class WorkoutPlanListCreateView(ListCreateAPIView):
     def get_queryset(self):
         user = self.request.user
 
+        if user.role == "superadmin":
+            return WorkoutPlan.objects.all()
+
         if user.role == "trainer":
             return WorkoutPlan.objects.filter(created_by=user)
 

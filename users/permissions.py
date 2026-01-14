@@ -27,3 +27,7 @@ class IsManagerOrTrainer(BasePermission):
             request.user.is_authenticated
             and request.user.role in ["manager", "trainer"]
         )
+
+class IsMember(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.is_authenticated and request.user.role == "member"
