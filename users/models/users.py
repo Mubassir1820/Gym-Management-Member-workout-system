@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager,PermissionsMixin
+from GymBranch.models.gym_branch import GymBranch
 from django.utils import timezone
 
 # User manager 
@@ -32,7 +33,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(unique=True)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES)
-    # gym_branch(Later to import)
+    gym_branch = models.ForeignKey(GymBranch,on_delete=models.SET_NULL,blank=True,null=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
