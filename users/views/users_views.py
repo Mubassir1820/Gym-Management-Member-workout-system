@@ -18,5 +18,5 @@ class ProfileView(APIView):
             "id": user.id,
             "email": user.email,
             "role": user.role,
-            # "gym_branch": user.gym_branch.id if user.gym_branch else None
+            "gym_branch": user.gym_branch.id if user.gym_branch else None
         })
